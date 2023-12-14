@@ -18,13 +18,16 @@ from django.contrib import admin
 from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
+from crm_back import views
 
-from crm_back.views import image_upload
-
+app_name = 'main'
 
 urlpatterns = [
-    path("", image_upload, name="upload"),
+    path("", views.index, name="index"),
     path("admin/", admin.site.urls),
+    path('register/', views.register_request, name='register'),
+    path('login/', views.login_request, name='login'),
+    path('logout/', views.logout_request, name='logout')
 ]
 
 if bool(settings.DEBUG):
