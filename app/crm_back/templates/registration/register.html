@@ -1,20 +1,13 @@
-<!DOCTYPE html>
+{% extends 'base.html' %}
 {% load crispy_forms_tags %}
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <div>
-        <h1>Register</h1>
+{% block content %}
+    <div class="container">
+        <h1>Регистрация</h1>
         <form method="POST">
             {% csrf_token %}
             {{ register_form|crispy }}
-            <button type="submit">Register</button>
+            <button type="submit" class="btn btn-primary">Зарегестрироваться</button>
         </form>
         <p>Если у вас уже есть аккаунт, <a href="/login">Авторизация</a></p>
     </div>
-</body>
-</html>
+{% endblock %}

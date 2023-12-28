@@ -23,11 +23,12 @@ from crm_back import views
 app_name = 'main'
 
 urlpatterns = [
-    path("", views.index, name="index"),
+    path("main/", views.index, name="index"),
     path("admin/", admin.site.urls),
     path('register/', views.register_request, name='register'),
     path('login/', views.login_request, name='login'),
-    path('logout/', views.logout_request, name='logout')
+    path('logout/', views.logout_request, name='logout'),
+    path('torg-12/', views.torg12, name='torg12')
 ]
 
 if bool(settings.DEBUG):
