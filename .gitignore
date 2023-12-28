@@ -160,3 +160,4 @@ cython_debug/
 #.idea/
 .env.prod
 .env.prod.db
+.DS_Store
