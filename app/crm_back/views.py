@@ -49,5 +49,9 @@ def index(request):
     return render(request=request, template_name='index.html')
 
 def torg12(request):
+	
 	return render(request=request, template_name='torg-12.html')
 
+
+def new_order(request):
+	return render(request=request, template_name='new-order.html')

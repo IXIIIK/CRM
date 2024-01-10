@@ -28,7 +28,8 @@ urlpatterns = [
     path('register/', views.register_request, name='register'),
     path('login/', views.login_request, name='login'),
     path('logout/', views.logout_request, name='logout'),
-    path('torg-12/', views.torg12, name='torg12')
+    path('torg-12/', views.torg12, name='torg12'),
+    path('new-order', views.new_order, name='new_order'),
 ]
 
 if bool(settings.DEBUG):
