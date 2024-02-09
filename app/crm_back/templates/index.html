@@ -1,8 +1,53 @@
 {% extends 'base.html' %}
-
+{% load crispy_forms_tags %}
 
 {% block content %}
 
+<div class="container">
+  <div class="row">
+    <div class="col-6 col-sm-3 p-3 mb-0 bg-warning text-dark text-center">
+      <p class="h5">Новый заказ</p>
+    </div>
+    <div class="col-6 col-sm-3 p-3 mb-0 bg-warning text-dark text-center">
+      <p class="h5">Ждут оплаты</p>
+    </div>
+    <div class="col-6 col-sm-3 p-3 mb-0 bg-warning text-dark text-center">
+      <p class="h5">В работе</p>
+    </div>
+    <div class="col-6 col-sm-3 p-3 mb-0 bg-warning text-dark text-center">
+      <p class="h5">Отгружены</p>
+    </div>
+    <div class="w-100"></div>
+    <div class="col-6 col-sm-3 p-3 mb-2 text-center border-left border-right border-warning">
+      {% for order in orders %}
+      {% if order.order_status == "NEW" and order.id %}
+        <div class="border border-dark rounded p-2 mb-3">
+          <b class="text-left d-block mb-3">{{ order.first_name }} {{ order.last_name }}</b>
+          <a class="badge badge-warning p-3 d-block" href="{% url 'info-order' pk=order.id%}">
+            Подробнее
+          </a>
+        </div>
+      {% endif %}
+      {% endfor %}
+      <div class="mt-4 text-center">
+        <a href="{% url 'new-order' %}">Создать</a>
+      </div>
+    </div>
+    <div class="col-6 col-sm-3 p-3 mb-2 text-center border-right border-warning">
+      {% for order in orders %}
+      {% if order.order_status == "WAIT_PAID" and order.id %}
+        <div class="border border-dark rounded p-2 mb-3">
+          <b class="text-left d-block mb-3">{{ order.first_name }} {{ order.last_name }}</b>
+          <a class="badge badge-warning p-3 d-block" href="{% url 'info-order' pk=order.id%}">
+            Подробнее
+          </a>
+        </div>
+      {% endif %}
+      {% endfor %}
+    </div>
+    <div class="col-6 col-sm-3 p-3 mb-2 text-center border-right border-warning"></div>
+    <div class="col-6 col-sm-3 p-3 mb-2 text-center border-right border-warning"></div>
+</div>
 
 
 {% endblock %}

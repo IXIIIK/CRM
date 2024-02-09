@@ -1,3 +1,11 @@
 nav {
     margin-bottom: 30px;
 }
+
+.helptext{
+    visibility: hidden;
+  }
+
+body {
+    background-color: rgb(250, 0, 0);
+}

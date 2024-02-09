@@ -1,0 +1,14 @@
+{% extends 'base.html' %}
+{% block content %}
+
+
+<div class="container">
+    <div class="d-flex p-2 mb-0 bg-warning text-white rounded-top">
+        <p class="font-weight-bold h5">{{order.first_name}} {{order.last_name}}</p>
+    </div>
+    <div class="border border-warning">
+        <p>{{order.order_catalog}}</p>
+        <p>{{order.order_status}}</p>
+    </div>
+</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{
+	"ulid": "01HP66QRWGBXNTHQ61SND7MW43",
+	"minTime": 1707444803812,
+	"maxTime": 1707451200000,
+	"stats": {
+		"numSamples": 13272,
+		"numSeries": 1106,
+		"numChunks": 1106
+	},
+	"compaction": {
+		"level": 1,
+		"sources": [
+			"01HP66QRWGBXNTHQ61SND7MW43"
+		]
+	},
+	"version": 1
+}

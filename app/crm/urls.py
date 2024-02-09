@@ -20,16 +20,24 @@ from django.conf import settings
 from django.conf.urls.static import static
 from crm_back import views
 
+
 app_name = 'main'
 
 urlpatterns = [
-    path("main/", views.index, name="index"),
+    #home page
+    path("", views.index, name="index"),
+    #admin page
     path("admin/", admin.site.urls),
+    #registration page
     path('register/', views.register_request, name='register'),
+    #authenticate page
     path('login/', views.login_request, name='login'),
+    #logout page
     path('logout/', views.logout_request, name='logout'),
-    path('torg-12/', views.torg12, name='torg12'),
-    path('new-order', views.new_order, name='new_order'),
+    #new order page
+    path('new_order/', views.OrderCreateView.as_view(), name='new-order'),
+    #order info
+    path('info_order/<int:pk>', views.DetailOrder.as_view(), name='info-order')
 ]
 
 if bool(settings.DEBUG):
