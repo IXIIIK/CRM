@@ -1,10 +1,4 @@
 # Byte-compiled / optimized / DLL files
-.env.dev
-.env.prod
-.env.prod.db
-grafana/
-data/ 
-config/ 
 __pycache__/
 *.py[cod]
 *$py.class
