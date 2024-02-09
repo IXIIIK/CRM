@@ -32,80 +32,30 @@ services:
 #monitoring
   prometheus:
     image: prom/prometheus:latest
-    volumes:
-      - ./prometheus:/etc/prometheus/
-    container_name: prometheus
-    hostname: prometheus
     command:
+      - --storage.tsdb.retention.time=7d
       - --config.file=/etc/prometheus/prometheus.yml
     ports:
-      - 9090:9090
-    restart: unless-stopped
-    environment:
-      TZ: "Europe/Moscow"
-    networks:
-      - default
-
-  node-exporter:
-    image: prom/node-exporter
+      - "9090:9090"
     volumes:
-      - /proc:/host/proc:ro
-      - /sys:/host/sys:ro
-      - /:/rootfs:ro
-    container_name: exporter
-    hostname: exporter
-    command:
-      - --path.procfs=/host/proc
-      - --path.sysfs=/host/sys
-      - --collector.filesystem.ignored-mount-points
-      - ^/(sys|proc|dev|host|etc|rootfs/var/lib/docker/containers|rootfs/var/lib/docker/overlay2|rootfs/run/docker/netns|rootfs/var/lib/docker/aufs)($$|/)
-    ports:
-      - 9100:9100
-    restart: unless-stopped
-    environment:
-      TZ: "Europe/Moscow"
-    networks:
-      - default
-
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
   grafana:
-    image: grafana/grafana
-    user: root
-    depends_on:
-      - prometheus
+    image: grafana/grafana:latest
     ports:
-      - 3000:3000
+      - "3000:3000"
     volumes:
-      - ./grafana:/var/lib/grafana
-      - ./grafana/provisioning/:/etc/grafana/provisioning/
-    container_name: grafana
-    hostname: grafana
-    restart: unless-stopped
-    environment:
-      TZ: "Europe/Moscow"
-    networks:
-      - default
-
-  blackbox:
-    image: prom/blackbox-exporter
-    container_name: blackbox
-    hostname: blackbox
+      - ./grafana-provisioning/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana-provisioning/datasources:/etc/grafana/provisioning/datasources
+  node_exporter_1:
+    image: prom/node-exporter:latest
     ports:
-      - 9115:9115
-    restart: unless-stopped
-    command:
-      - "--config.file=/etc/blackbox/blackbox.yml"
-    volumes:
-      - ./blackbox:/etc/blackbox
-    environment:
-      TZ: "Europe/Moscow"
-    networks:
-      - default
+      - "9100:9100"
+  node_exporter_2: 
+    image: prom/node-exporter:latest
+    ports:
+      - "9101:9100"
   
   
 
 volumes:
   postgres_data:
-  prometheus-data:
-    driver: local
-  grafana-data:
-    driver: local
